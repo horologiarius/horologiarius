@@ -7,7 +7,7 @@ const today = new Date();
 	<div class="social-links">
 	    <a href="mailto:contact@horologiarius.com">
 			<span class="sr-only">Send us an e-mail</span>
-			<svg viewBox="0 0 16 16" aria-hidden="true" width="42" height="42" astro-icon="social/email" style="vertical-align: -4px;"
+			<svg viewBox="0 0 16 16" aria-hidden="true" width="42" height="42" astro-icon="social/email"
 				><path
 					fill="none"
 					stroke="currentColor"
@@ -54,20 +54,26 @@ const today = new Date();
 	</div>
 </footer>
 <style>
+    <style>
 	footer {
 		padding: 2em 1em 6em 1em;
 		background: linear-gradient(var(--gray-gradient)) no-repeat;
 		color: rgb(var(--gray));
 		text-align: center;
 	}
-
-	.social-links a:first-child {
+	.social-links {
 		display: flex;
-        align-items: center;
+		justify-content: center;
+		align-items: center;
+		gap: 1em;
+		margin-top: 1em;
 	}
 	.social-links a {
 		text-decoration: none;
 		color: rgb(var(--gray));
+		display: inline-flex;
+		align-items: center;
+		line-height: 0;
 	}
 	.social-links a:hover {
 		color: rgb(var(--gray-dark));
