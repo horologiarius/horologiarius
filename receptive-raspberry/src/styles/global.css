@@ -169,35 +169,3 @@ hr {
 	clip-path: inset(50%);
 	white-space: nowrap;
 }
-
-.published-container {
-	background-image: url("https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-	min-height: 100vh;
-}
-
-.markdown-rendered {
-	background-color: rgba(13, 14, 16, 0.88);
-	padding: 2rem;
-	border-radius: 4px;
-	color: rgb(229, 233, 240);
-}
-
-.markdown-rendered h1,
-.markdown-rendered h2,
-.markdown-rendered h3,
-.markdown-rendered h4,
-.markdown-rendered h5,
-.markdown-rendered h6 {
-	color: rgb(229, 233, 240);
-}
-
-.markdown-rendered a {
-	color: #6680ff;
-}
-
-.markdown-rendered code {
-	background-color: rgba(255, 255, 255, 0.1);
-}
