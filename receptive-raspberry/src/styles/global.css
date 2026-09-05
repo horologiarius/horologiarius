@@ -52,19 +52,6 @@
 
 <body style="background: url('https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh;">
 
-body {
-	font-family: var(--font-main);
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
-}
 main {
 	width: 720px;
 	max-width: calc(100% - 2em);
