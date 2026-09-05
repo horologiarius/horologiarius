@@ -11,29 +11,30 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			.published-container {
-				background-image: url("https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg");
+
+		<style is:global>
+			.blog-post-body {
+				background-image: url("https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg") !important;
 				background-repeat: no-repeat;
 				background-size: cover;
 				background-attachment: fixed;
 				min-height: 100vh;
 			}
-			main {
+			.blog-post-body main {
 				width: calc(100% - 2em);
 				max-width: 100%;
 				margin: 0;
 			}
-			.hero-image {
+			.blog-post-body .hero-image {
 				width: 100%;
 			}
-			.hero-image img {
+			.blog-post-body .hero-image img {
 				display: block;
 				margin: 0 auto;
 				border-radius: 12px;
 				box-shadow: var(--box-shadow);
 			}
-			.prose {
+			.blog-post-body .prose {
 				width: 720px;
 				max-width: calc(100% - 2em);
 				margin: auto;
@@ -42,34 +43,34 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				background-color: rgba(13, 14, 16, 0.88);
 				color: rgb(229, 233, 240);
 			}
-			.prose h1,
-			.prose h2,
-			.prose h3,
-			.prose h4,
-			.prose h5,
-			.prose h6 {
+			.blog-post-body .prose h1,
+			.blog-post-body .prose h2,
+			.blog-post-body .prose h3,
+			.blog-post-body .prose h4,
+			.blog-post-body .prose h5,
+			.blog-post-body .prose h6 {
 				color: rgb(229, 233, 240);
 			}
-			.prose a {
+			.blog-post-body .prose a {
 				color: #6680ff;
 			}
-			.prose code {
+			.blog-post-body .prose code {
 				background-color: rgba(255, 255, 255, 0.1);
 			}
-			.title {
+			.blog-post-body .title {
 				margin-bottom: 1em;
 				padding: 1em 0;
 				text-align: center;
 				line-height: 1;
 			}
-			.title h1 {
+			.blog-post-body .title h1 {
 				margin: 0 0 0.5em 0;
 			}
-			.date {
+			.blog-post-body .date {
 				margin-bottom: 0.5em;
 				color: rgb(150, 160, 180);
 			}
-			.last-updated-on {
+			.blog-post-body .last-updated-on {
 				font-style: italic;
 			}
 		</style>
