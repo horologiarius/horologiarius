@@ -11,30 +11,22 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-
-		<style is:global>
-			.blog-post-body {
-				background-image: url("https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg") !important;
-				background-repeat: no-repeat;
-				background-size: cover;
-				background-attachment: fixed;
-				min-height: 100vh;
-			}
-			.blog-post-body main {
+		<style>
+			main {
 				width: calc(100% - 2em);
 				max-width: 100%;
 				margin: 0;
 			}
-			.blog-post-body .hero-image {
+			.hero-image {
 				width: 100%;
 			}
-			.blog-post-body .hero-image img {
+			.hero-image img {
 				display: block;
 				margin: 0 auto;
 				border-radius: 12px;
 				box-shadow: var(--box-shadow);
 			}
-			.blog-post-body .prose {
+			.prose {
 				width: 720px;
 				max-width: calc(100% - 2em);
 				margin: auto;
@@ -43,40 +35,39 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				background-color: rgba(13, 14, 16, 0.88);
 				color: rgb(229, 233, 240);
 			}
-			.blog-post-body .prose h1,
-			.blog-post-body .prose h2,
-			.blog-post-body .prose h3,
-			.blog-post-body .prose h4,
-			.blog-post-body .prose h5,
-			.blog-post-body .prose h6 {
+			.prose h1,
+			.prose h2,
+			.prose h3,
+			.prose h4,
+			.prose h5,
+			.prose h6 {
 				color: rgb(229, 233, 240);
 			}
-			.blog-post-body .prose a {
+			.prose a {
 				color: #6680ff;
 			}
-			.blog-post-body .prose code {
+			.prose code {
 				background-color: rgba(255, 255, 255, 0.1);
 			}
-			.blog-post-body .title {
+			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
 				text-align: center;
 				line-height: 1;
 			}
-			.blog-post-body .title h1 {
+			.title h1 {
 				margin: 0 0 0.5em 0;
 			}
-			.blog-post-body .date {
+			.date {
 				margin-bottom: 0.5em;
 				color: rgb(150, 160, 180);
 			}
-			.blog-post-body .last-updated-on {
+			.last-updated-on {
 				font-style: italic;
 			}
 		</style>
 	</head>
-
-	<body class="blog-post-body">
+	<body style="background-image: url('https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg'); background-size: cover; background-attachment: fixed; min-height: 100vh;">
 		<Header />
 		<main>
 			<article>
@@ -104,3 +95,4 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		</main>
 		<Footer />
 	</body>
+</html>
