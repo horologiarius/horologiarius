@@ -9,6 +9,25 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main h1 {
+				color: rgb(229, 233, 240);
+			}
+			main p {
+				color: rgb(200, 210, 225);
+			}
+			main blockquote {
+				color: rgb(220, 225, 235);
+				border-left-color: #6680ff;
+			}
+			main a {
+				color: #6680ff;
+			}
+			main code {
+				background-color: rgba(255, 255, 255, 0.1);
+				color: rgb(229, 233, 240);
+			}
+		</style>
 	</head>
 	<body style="background: url('https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh;">
 		<Header />
