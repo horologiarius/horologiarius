@@ -1,5 +1,5 @@
 {
-  "extends": "horologiarius/receptive-raspberry/bases",
+  "extends": "horologiarius/receptive-raspberry/base",
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
