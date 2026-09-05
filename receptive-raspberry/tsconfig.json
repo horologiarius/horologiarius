@@ -7,9 +7,7 @@
     "strict": true,
     "skipLibCheck": true,
     "allowJs": true,
-    "checkJs": false,
     "jsx": "preserve",
     "jsxImportSource": "astro"
-  },
-  "extends": []
+  }
 }
