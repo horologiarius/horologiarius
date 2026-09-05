@@ -37,13 +37,13 @@
 }
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+  --color-bg: #0a0a0a;           /* preto profundo, base */
+  --color-surface: rgba(212, 175, 55, 0.05); /* leve véu dourado sobre blocos */
+  --color-text-primary: #e8e0c8;  /* dourado-claro, quase marfim — corpo de texto */
+  --color-text-heading: #f2d675;  /* dourado mais saturado — títulos, hierarquia máxima */
+  --color-text-muted: #b8a968;    /* dourado envelhecido — datas, metadados */
+  --color-accent: #d4af37;        /* dourado clássico — links, bordas, hover */
+  --color-accent-hover: #f0c93d;  /* dourado mais vivo — interação */
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
