@@ -45,7 +45,6 @@ header p {
 	color: var(--color-text-muted);
 	font-size: 14px;
 }
-
 .rss-badge {
 	display: inline-flex;
 	align-items: center;
@@ -140,7 +139,6 @@ footer {
 <header>
 	<h1>&#8982; <xsl:value-of select="/rss/channel/title" /></h1>
 	<p><xsl:value-of select="/rss/channel/description" /></p>
-
 	<button class="rss-badge" onclick="copyFeed()">
 		<svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 11.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm0-4a5.5 5.5 0 0 1 5.5 5.5h-2a3.5 3.5 0 0 0-3.5-3.5v-2zm0-4a9.5 9.5 0 0 1 9.5 9.5h-2A7.5 7.5 0 0 0 2 5.5v-2z"/></svg>
 		<span id="badge-text">Copy Feed URL</span>
@@ -154,14 +152,14 @@ footer {
 		});
 	}
 	</script>
-		<svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 11.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm0-4a5.5 5.5 0 0 1 5.5 5.5h-2a3.5 3.5 0 0 0-3.5-3.5v-2zm0-4a9.5 9.5 0 0 1 9.5 9.5h-2A7.5 7.5 0 0 0 2 5.5v-2z"/></svg>
-		RSS Feed
-	</div>
 </header>
 <main>
 	<div class="feed-info">
 		<p>This is an RSS feed. Copy this URL and paste it into your favorite RSS reader (like Feedly, Inoreader, or NetNewsWire) to subscribe and receive updates automatically.</p>
-		<p style="margin-top: 0.8em;">Feed URL: <a href="{/rss/channel/link}"><xsl:value-of select="/rss/channel/link" /></a></p>
+		<p style="margin-top: 0.8em;">Feed URL: <a>
+			<xsl:attribute name="href"><xsl:value-of select="/rss/channel/link" /></xsl:attribute>
+			<xsl:value-of select="/rss/channel/link" />
+		</a></p>
 	</div>
 	<xsl:for-each select="/rss/channel/item">
 		<div class="item">
@@ -181,7 +179,7 @@ footer {
 	</xsl:for-each>
 </main>
 <footer>
-	<p><i>Horologiarius: The Watchmaker &#8982;</i></p>
+	<p>Horologiarius — The Watchmaker &#8982;</p>
 </footer>
 </body>
 </html>
