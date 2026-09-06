@@ -160,7 +160,7 @@ footer {
 	</xsl:for-each>
 </main>
 <footer>
-	<p>Horologiarius — The Watchmaker &#8982;</p>
+	<p><i>Horologiarius: The Watchmaker &#8982;</i></p>
 </footer>
 </body>
 </html>
