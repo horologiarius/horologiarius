@@ -4,7 +4,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 export async function GET(context) {
 	const posts = await getCollection('blog');
-	return rss({
+	const response = await rss({
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
 		site: context.site,
@@ -12,5 +12,14 @@ export async function GET(context) {
 			...post.data,
 			link: `/blog/${post.id}/`,
 		})),
+	}).then((res) => res.text());
+
+	const xml = response.replace(
+		'<?xml version="1.0" encoding="UTF-8"?>',
+		'<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/rss-styles.xsl"?>'
+	);
+
+	return new Response(xml, {
+		headers: { 'Content-Type': 'application/xml; charset=utf-8' },
 	});
 }
