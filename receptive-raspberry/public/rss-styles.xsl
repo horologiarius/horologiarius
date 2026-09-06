@@ -45,6 +45,7 @@ header p {
 	color: var(--color-text-muted);
 	font-size: 14px;
 }
+
 .rss-badge {
 	display: inline-flex;
 	align-items: center;
@@ -52,10 +53,17 @@ header p {
 	background: var(--color-surface);
 	border: 1px solid var(--color-accent);
 	border-radius: 50px;
-	padding: 0.5em 1.2em;
+	padding: 0.6em 1.4em;
 	margin: 1em auto 0;
 	font-size: 13px;
 	color: var(--color-accent);
+	cursor: pointer;
+	font-family: inherit;
+	transition: all 0.2s ease;
+}
+.rss-badge:hover {
+	background: var(--color-accent);
+	color: #0a0a0a;
 }
 .rss-badge svg {
 	width: 16px;
@@ -132,7 +140,20 @@ footer {
 <header>
 	<h1>&#8982; <xsl:value-of select="/rss/channel/title" /></h1>
 	<p><xsl:value-of select="/rss/channel/description" /></p>
-	<div class="rss-badge">
+
+	<button class="rss-badge" onclick="copyFeed()">
+		<svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 11.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm0-4a5.5 5.5 0 0 1 5.5 5.5h-2a3.5 3.5 0 0 0-3.5-3.5v-2zm0-4a9.5 9.5 0 0 1 9.5 9.5h-2A7.5 7.5 0 0 0 2 5.5v-2z"/></svg>
+		<span id="badge-text">Copy Feed URL</span>
+	</button>
+	<script>
+	function copyFeed() {
+		navigator.clipboard.writeText(window.location.href).then(function() {
+			var t = document.getElementById('badge-text');
+			t.textContent = 'Copied!';
+			setTimeout(function() { t.textContent = 'Copy Feed URL'; }, 2000);
+		});
+	}
+	</script>
 		<svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 11.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm0-4a5.5 5.5 0 0 1 5.5 5.5h-2a3.5 3.5 0 0 0-3.5-3.5v-2zm0-4a9.5 9.5 0 0 1 9.5 9.5h-2A7.5 7.5 0 0 0 2 5.5v-2z"/></svg>
 		RSS Feed
 	</div>
