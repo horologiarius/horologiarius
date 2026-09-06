@@ -1,8 +1,14 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const recentPosts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 5);
 ---
 
 <!doctype html>
@@ -35,6 +41,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				font-size: 12px;
 				line-height: 1.7;
 			}
+			main blockquote footer {
+				color: var(--color-text-muted);
+				font-size: 11px;
+				margin-top: 0.5em;
+			}
 			main a {
 				color: var(--color-accent);
 			}
@@ -49,10 +60,28 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				border-collapse: collapse;
 				margin: 1em 0;
 				font-size: 12px;
+				width: 100%;
+			}
+			main caption {
+				color: var(--color-text-heading);
+				font-size: 1.2em;
+				margin-bottom: 0.5em;
+				text-align: left;
 			}
 			main td, main th {
 				padding: 0.4em 0.8em;
 				border: 1px solid var(--color-text-muted);
+				text-align: left;
+			}
+			main th {
+				color: var(--color-text-heading);
+				font-weight: 700;
+			}
+			main td {
+				color: var(--color-text-primary);
+			}
+			main tr:hover td {
+				background-color: var(--color-surface);
 			}
 			main hr.section-break {
 				border: none;
@@ -74,24 +103,25 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<Header />
 		<main>
 			<h1>Guidelines</h1>
-            <blockquote>
-			<p>
-				Logic gets its name from the Greek word logos, which has two meanings, for logos means "word" and "reason". Whence logic is divided into a rational and a discursive science. Rational logic, which is called argumentative, comprises dialectic and rhetoric. Discursive logic is the genus to which grammar, dialectic, and rhetoric belong, and it thus comprises the argumentative.
-			</p>
-			<footer>
-				— <i>Hugh of Saint Victor</i>
-			</footer>
-            </blockquote>
+			<blockquote>
+				<p>
+					Logic gets its name from the Greek word logos, which has two meanings, for logos means "word" and "reason". Whence logic is divided into a rational and a discursive science. Rational logic, which is called argumentative, comprises dialectic and rhetoric. Discursive logic is the genus to which grammar, dialectic, and rhetoric belong, and it thus comprises the argumentative.
+				</p>
+				<footer>
+					— <i>Hugh of Saint Victor</i>
+				</footer>
+			</blockquote>
 			<hr class="section-break" />
-		    <blockquote>	
-            <p>
-				But if we hold most constantly to that course which God commands us, and which we have undertaken to hold, we shall arrive by the Power and Wisdom of God at the supreme Cause, or the supreme Author, or the supreme Principle of all things, or by whatever other name so great a reality can be more rightly called.			</p>
-			<footer>
-				— <i>Saint Augustine of Hippo</i>
-			</footer>
-            </blockquote>
-            <hr class="section-break" />
-		    <table class="recent-table">
+			<blockquote>
+				<p>
+					But if we hold most constantly to that course which God commands us, and which we have undertaken to hold, we shall arrive by the Power and Wisdom of God at the supreme Cause, or the supreme Author, or the supreme Principle of all things, or by whatever other name so great a reality can be more rightly called.
+				</p>
+				<footer>
+					— <i>Saint Augustine of Hippo</i>
+				</footer>
+			</blockquote>
+			<hr class="section-break" />
+			<table class="recent-table">
 				<caption>Last Essays</caption>
 				<thead>
 					<tr>
@@ -102,21 +132,23 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					</tr>
 				</thead>
 				<tbody>
-					{recentPosts.map((post) => (
-						<tr>
-							<td>
-								<a href={`/blog/${post.id}/`}>
-									<FormattedDate date={post.data.pubDate} />
-								</a>
-							</td>
-							<td>{post.data.type ?? '—'}</td>
-							<td>{post.data.status ?? '—'}</td>
-							<td>{post.data.topics?.join(', ') ?? '—'}</td>
-						</tr>
-					))}
+					{
+						recentPosts.map((post) => (
+							<tr>
+								<td>
+									<a href={`/blog/${post.id}/`}>
+										<FormattedDate date={post.data.pubDate} />
+									</a>
+								</td>
+								<td>{post.data.type ?? '—'}</td>
+								<td>{post.data.status ?? '—'}</td>
+								<td>{post.data.topics?.join(', ') ?? '—'}</td>
+							</tr>
+						))
+					}
 				</tbody>
 			</table>
-			<img class="wormhole.gif" src="https://media1.tenor.com/m/ypwgjG2VB6UAAAAC/wormhole-black-and-white.gif" alt="Parallaxed wormhole" />
+			<img class="wormhole-gif" src="https://media1.tenor.com/m/ypwgjG2VB6UAAAAC/wormhole-black-and-white.gif" alt="Parallaxed wormhole" />
 		</main>
 		<Footer />
 	</body>
