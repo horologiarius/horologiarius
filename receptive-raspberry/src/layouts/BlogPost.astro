@@ -32,8 +32,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin: auto;
 				padding: 2rem;
 				border-radius: 4px;
-				background-color: rgba(13, 14, 16, 0.88);
-				color: rgb(229, 233, 240);
+				background-color: rgba(10, 10, 10, 0.88);
+				color: var(--color-text-primary);
 			}
 			.prose h1,
 			.prose h2,
@@ -41,13 +41,23 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.prose h4,
 			.prose h5,
 			.prose h6 {
-				color: rgb(229, 233, 240);
+				color: var(--color-text-heading);
 			}
 			.prose a {
-				color: #6680ff;
+				color: var(--color-accent);
+			}
+			.prose a:hover {
+				color: var(--color-accent-hover);
 			}
 			.prose code {
-				background-color: rgba(255, 255, 255, 0.1);
+				background-color: var(--color-surface);
+				color: var(--color-text-primary);
+			}
+			.prose blockquote {
+				border-left-color: var(--color-accent);
+			}
+			.prose hr {
+				border-top-color: var(--color-text-muted);
 			}
 			.title {
 				margin-bottom: 1em;
@@ -60,7 +70,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(150, 160, 180);
+				color: var(--color-text-muted);
 			}
 			.last-updated-on {
 				font-style: italic;
