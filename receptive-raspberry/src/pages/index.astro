@@ -1,17 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-const allPosts = await getCollection('blog');
-
-const recentPosts = allPosts
-	.filter((post) => post.data.status && post.data.status !== 'NULL')
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 5);
 ---
 
 <!doctype html>
@@ -19,15 +10,30 @@ const recentPosts = allPosts
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 3em 1em;
+			}
 			main h1 {
 				color: var(--color-text-heading);
+				font-size: 2em;
+				margin-bottom: 1.5em;
 			}
 			main p {
 				color: var(--color-text-primary);
+				font-size: 18px;
+				line-height: 1.8;
+				margin-bottom: 1em;
 			}
 			main blockquote {
 				color: var(--color-text-primary);
-				border-left-color: var(--color-accent);
+				border-left: 3px solid var(--color-accent);
+				padding: 0.5em 1em;
+				margin: 1em 0;
+				font-size: 16px;
+				line-height: 1.7;
 			}
 			main a {
 				color: var(--color-accent);
@@ -39,56 +45,42 @@ const recentPosts = allPosts
 				background-color: var(--color-surface);
 				color: var(--color-text-primary);
 			}
+			main table {
+				border-collapse: collapse;
+				margin: 1em 0;
+				font-size: 16px;
+			}
+			main td, main th {
+				padding: 0.5em 1em;
+				border: 1px solid var(--color-text-muted);
+			}
+			.wormhole-gif {
+				display: block;
+				margin: 2em auto;
+				max-width: 400px;
+				width: 100%;
+				height: auto;
+				border-radius: 8px;
+			}
 		</style>
 	</head>
 	<body style="background: url('https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh;">
 		<Header />
 		<main>
 			<h1>Guidelines</h1>
-            <blockquote>
 			<p>
-				Logic gets its name from the Greek word logos, which has two meanings, for logos means "word" and "reason". Whence logic is divided into a rational and a discursive science. Rational logic, which is called argumentative, comprises dialectic and rhetoric. Discursive logic is the genus to which grammar, dialectic, and rhetoric belong, and it thus comprises the argumentative.
-            </p>
-            <footer>
-			    — <i>Hugh of Saint Victor</i>
-            </footer>
-            </blockquote>
-
-            <blockquote>
+				<blockquote>Logic gets its name from the Greek word logos, which has two meanings, for logos means "word" and "reason". Whence logic is divided into a rational and a discursive science. Rational logic, which is called argumentative, comprises dialectic and rhetoric. Discursive logic is the genus to which grammar, dialectic, and rhetoric belong, and it thus comprises the argumentative.</blockquote>
+			</p>
 			<p>
-				But if we hold most constantly to that course which God commands us, and which we have undertaken to hold, we shall arrive by the Power and Wisdom of God at the supreme Cause, or the supreme Author, or the supreme Principle of all things, or by whatever other name so great a reality can be more rightly called.
-            </p>
-            <footer>
-			    — <i>Saint Augustine of Hippo</i>
-            </footer>
-            </blockquote>
-
-			<table class="recent-table">
-				<caption>Recent Writings</caption>
-				<thead>
-					<tr>
-						<th>Created</th>
-						<th>Type</th>
-						<th>Status</th>
-						<th>Topics</th>
-					</tr>
-				</thead>
-				<tbody>
-					{recentPosts.map((post) => (
-						<tr>
-							<td>
-								<a href={`/blog/${post.id}/`}>
-									<FormattedDate date={post.data.pubDate} />
-								</a>
-							</td>
-							<td>{post.data.type ?? '—'}</td>
-							<td>{post.data.status ?? '—'}</td>
-							<td>{post.data.topics?.join(', ') ?? '—'}</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
-        <img src="https://media1.tenor.com/m/ypwgjG2VB6UAAAAC/wormhole-black-and-white.gif" alt="Parallaxed wormhole">
+				— <i>Hugh of Saint Victor</i>
+			</p>
+			<p>
+				<blockquote>But if we hold most constantly to that course which God commands us, and which we have undertaken to hold, we shall arrive by the Power and Wisdom of God at the supreme Cause, or the supreme Author, or the supreme Principle of all things, or by whatever other name so great a reality can be more rightly called.</blockquote>
+			</p>
+			<p>
+				— <i>Saint Augustine of Hippo</i>
+			</p>
+			<img class="wormhole-gif" src="https://media1.tenor.com/m/NTfGPeL9OccAAAAd/steins-gate-mad-scientist.gif" alt="El Psy Congroo" />
 		</main>
 		<Footer />
 	</body>
