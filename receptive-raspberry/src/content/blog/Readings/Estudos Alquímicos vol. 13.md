@@ -1,7 +1,7 @@
 ---
 title: "Estudos Alquímicos vol. 13"
 description: "Excerpts from Jung's annotations"
-pubDate:
+pubDate: 2026-03-26
 ---
 
 
