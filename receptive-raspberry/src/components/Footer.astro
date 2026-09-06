@@ -45,6 +45,15 @@ const today = new Date();
 				></path></svg
 			>
 		</a>
+		<a href=""/rss.xml" class="rss-float" target="_blank" aria-label="RSS Feed">
+			<span class="sr-only">Subscribe via RSS</span>
+			<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
+				><path
+					fill="currentColor"
+					d="M2 11.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm0-4a5.5 5.5 0 0 1 5.5 5.5h-2a3.5 3.5 0 0 0-3.5-3.5v-2zm0-4a9.5 9.5 0 0 1 9.5 9.5h-2A7.5 7.5 0 0 0 2 5.5v-2z"
+		    	 ></path></svg
+			>
+		</a>
 	</div>
 </footer>
 	<style>
@@ -71,4 +80,28 @@ const today = new Date();
 		.social-links a:hover {
 			color: var(--color-accent-hover);
 		}
+        .rss-float {
+	        position: fixed;
+         	bottom: 1.5em;
+        	right: 1.5em;
+        	width: 48px;
+	        height: 48px;
+	        display: flex;
+	    	align-items: center;
+        	justify-content: center;
+        	background: rgba(10, 10, 10, 0.92);
+        	border: 1px solid var(--color-accent);
+        	border-radius: 50%;
+         	color: var(--color-accent);
+        	text-decoration: none;
+        	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        	z-index: 999;
+	        transition: all 0.2s ease;
+         }
+         .rss-float:hover {
+        	color: var(--color-accent-hover);
+        	border-color: var(--color-accent-hover);
+        	box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+        	transform: scale(1.1);
+         }
 	</style>
