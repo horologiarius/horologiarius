@@ -1,3 +1,8 @@
+---
+title: "Estudos Alquímicos vol. 13"
+description: "Excerpts from Jung's annotations"
+pubDate:
+---
 
 
 A alquimia medieval representa o traço de união entre a gnose e os processos do inconsciente coletivo que podem ser observados no homem de hoje.
@@ -11,4 +16,3 @@ De fato, a ciência não é um instrumento perfeito, mas nem por isso deixa de s
 O Oriente nos ensina outra forma de compreensão, mais ampla, mais alta e profunda — a compreensão mediante a vida. Conhecemos esta última a modo de um sentimento fantasmagórico, que se exprime através de uma vaga religiosidade, motivo pelo qual preferimos colocar entre aspas a “sabedoria” oriental, remetendo-a para o domínio obscuro da crença e da superstição.
 
 Não se trata porém de intuições sentimentais, de um misticismo excessivo que tocasse as raias patológicas de um ascetismo primitivo e intratável, mas de intuições práticas nascidas da flor da inteligência chinesa e que não temos motivo algum para subestimar.
-
