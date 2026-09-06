@@ -8,56 +8,133 @@ import HeaderLink from './HeaderLink.astro';
 		<h2><a href="/">{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
+			<div class="dropdown">
+				<button class="dropdown-toggle" type="button">
+					Blog
+					<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"
+						><path fill="currentColor" d="M4 6l4 4 4-4z" /></svg
+					>
+				</button>
+				<div class="dropdown-menu">
+					<a href="/blog/archive">Archive</a>
+					<a href="/blog/essays">Essays</a>
+					<a href="/blog/media">Media</a>
+					<a href="/blog/notes">Notes</a>
+					<a href="/blog/readings">Readings</a>
+					<a href="/blog/topics">Topics</a>
+				</div>
+			</div>
 			<HeaderLink href="/about">About</HeaderLink>
+		</div>
 		</div>
 	</nav>
 </header>
-	<style>
-		header {
-			margin: 0;
-			padding: 0 1em;
-			background: rgba(10, 10, 10, 0.92);
-			box-shadow: 0 2px 8px rgba(0, 0, 0, 25%);
-		}
-		h2 {
-			margin: 0;
-			font-size: 1em;
-		}
+<style>
+	header {
+		margin: 0;
+		padding: 0 1em;
+		background: rgba(10, 10, 10, 0.92);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 25%);
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
+	}
 
-		h2 a,
-		h2 a.active {
-			text-decoration: none;
-			color: var(--color-text-heading);
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+		color: var(--color-text-heading);
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	nav a {
+		padding: 1em 0.5em;
+		color: var(--color-text-primary);
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+	}
+	nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--color-accent);
+	}
+	.social-links,
+	.social-links a {
+		display: flex;
+	}
+	.social-links a {
+		color: var(--color-text-muted);
+	}
+	.social-links a:hover {
+		color: var(--color-accent-hover);
+	}
+
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+	.dropdown-toggle {
+		background: none;
+		border: none;
+		color: var(--color-text-primary);
+		font-family: inherit;
+		font-size: inherit;
+		padding: 1em 0.5em;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 0.3em;
+		border-bottom: 4px solid transparent;
+		transition: color 0.2s ease;
+	}
+	.dropdown-toggle:hover {
+		color: var(--color-accent-hover);
+	}
+	.dropdown-toggle svg {
+		transition: transform 0.2s ease;
+	}
+	.dropdown-menu {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 160px;
+		background: rgba(10, 10, 10, 0.98);
+		border: 1px solid var(--color-accent);
+		border-radius: 8px;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+		padding: 0.5em 0;
+		z-index: 100;
+	}
+	.dropdown-menu a {
+		display: block;
+		padding: 0.6em 1em;
+		color: var(--color-text-primary);
+		text-decoration: none;
+		border-bottom: none;
+		font-size: 14px;
+		transition: all 0.2s ease;
+	}
+	.dropdown-menu a:hover {
+		color: var(--color-accent-hover);
+		background: var(--color-surface);
+	}
+	.dropdown:hover .dropdown-menu {
+		display: block;
+	}
+	.dropdown:hover .dropdown-toggle {
+		color: var(--color-accent-hover);
+	}
+	.dropdown:hover .dropdown-toggle svg {
+		transform: rotate(180deg);
+	}
+
+	@media (max-width: 720px) {
+		.social-links {
+			display: none;
 		}
-		nav {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		}
-		nav a {
-			padding: 1em 0.5em;
-			color: var(--color-text-primary);
-			border-bottom: 4px solid transparent;
-			text-decoration: none;
-		}
-		nav a.active {
-			text-decoration: none;
-			border-bottom-color: var(--color-accent);
-		}
-		.social-links,
-		.social-links a {
-			display: flex;
-		}
-		.social-links a {
-			color: var(--color-text-muted);
-		}
-		.social-links a:hover {
-			color: var(--color-accent-hover);
-		}
-		@media (max-width: 720px) {
-			.social-links {
-				display: none;
-			}
-		}
-	</style>
+	}
+</style>
