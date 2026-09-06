@@ -1,5 +1,7 @@
 ---
-date: 2022-12-22
+title: "O abismo da intuição introvertida"
+description: "Introverted Intuition as time decoder and the challenge of living in the present."
+pubDate: 2022-12-22
 type: Essay
 status: draft
 topics:
@@ -14,8 +16,7 @@ updated: 2026-01-07
 featured: false
 ---
 
-
->Lamentamos nosso caráter efêmero e buscamos consolo em uma transcendência simbólica: o legado de pelo menos termos participado da jornada. Você e eu não estaremos aqui, mas outros estarão, e o que fazemos, o que criamos, o que deixamos para trás contribui para o que virá e para como a vida futura viverá. Contudo, em um universo que acabará desprovido de vida e de consciência, até mesmo um legado simbólico — um sussurro destinado a nossos descendentes distantes — desaparecerá vazio adentro.
+> Lamentamos nosso caráter efêmero e buscamos consolo em uma transcendência simbólica: o legado de pelo menos termos participado da jornada. Você e eu não estaremos aqui, mas outros estarão, e o que fazemos, o que criamos, o que deixamos para trás contribui para o que virá e para como a vida futura viverá. Contudo, em um universo que acabará desprovido de vida e de consciência, até mesmo um legado simbólico — um sussurro destinado a nossos descendentes distantes — desaparecerá vazio adentro.
 
 ![](https://miro.medium.com/v2/resize:fit:700/1*SAHI-pt3v0n0Iv66MegQvg.jpeg)
 
