@@ -176,3 +176,27 @@ hr {
 	clip-path: inset(50%);
 	white-space: nowrap;
 }
+.rss-float {
+	position: fixed;
+	bottom: 1.5em;
+	right: 1.5em;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(10, 10, 10, 0.92);
+	border: 1px solid var(--color-accent);
+	border-radius: 50%;
+	color: var(--color-accent);
+	text-decoration: none;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+	z-index: 999;
+	transition: all 0.2s ease;
+}
+.rss-float:hover {
+	color: var(--color-accent-hover);
+	border-color: var(--color-accent-hover);
+	box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+	transform: scale(1.1);
+}
