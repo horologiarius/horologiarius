@@ -6,13 +6,12 @@ const blog = defineCollection({
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
 	schema: ({ image }) =>
 		z.object({
-			title: z.string(),
-			description: z.string(),
-			pubDate: z.coerce.date(),
+			title: z.string().default('Untitled'),
+			description: z.string().default(''),
+			pubDate: z.coerce.date().default(new Date()),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
-			// campos espelhando o vault Dataview
-			type: z.enum(['Essay', 'Note']).optional(),
+			type: z.string().optional(),
 			status: z.string().optional(),
 			topics: z.array(z.string()).optional(),
 		}),
