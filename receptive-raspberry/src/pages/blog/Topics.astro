@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../../consts';
+
+const allPosts = await getCollection('blog');
+
+const topicMap = new Map();
+allPosts.forEach((post) => {
+	const topics = post.data.topics ?? [];
+	topics.forEach((topic) => {
+		if (!topicMap.has(topic)) {
+			topicMap.set(topic, []);
+		}
+		topicMap.get(topic).push(post);
+	});
+});
+
+const topics = [...topicMap.entries()].sort((a, b) => b[1].length - a[1].length);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Topics" description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 3em 1em;
+			}
+			h1 {
+				color: var(--color-text-heading);
+				font-size: 1.4em;
+				margin-bottom: 1.5em;
+			}
+			.topic-list {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.8em;
+			}
+			.topic-card {
+				background: var(--color-surface);
+				border: 1px solid rgba(184, 169, 104, 0.3);
+				border-radius: 8px;
+				padding: 0.8em 1.2em;
+				text-decoration: none;
+				color: var(--color-text-heading);
+				font-size: 15px;
+				transition: all 0.2s ease;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+			}
+			.topic-card:hover {
+				border-color: var(--color-accent);
+				color: var(--color-accent-hover);
+				transform: translateY(-2px);
+			}
+			.topic-count {
+				background: var(--color-accent);
+				color: #0a0a0a;
+				border-radius: 50px;
+				padding: 0.1em 0.6em;
+				font-size: 12px;
+				font-weight: 700;
+			}
+			.empty {
+				color: var(--color-text-muted);
+				font-size: 16px;
+				text-align: center;
+				padding: 2em;
+			}
+		</style>
+	</head>
+	<body style="background: url('https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh;">
+		<Header />
+		<main>
+			<h1>Blog: Topics</h1>
+			{
+				topics.length > 0 ? (
+					<div class="topic-list">
+						{topics.map(([topic, posts]) => (
+							<span class="topic-card">
+								{topic}
+								<span class="topic-count">{posts.length}</span>
+							</span>
+						))}
+					</div>
+				) : (
+					<p class="empty">No topics tagged yet. Add <code>topics</code> to your post frontmatter.</p>
+				)
+			}
+		</main>
+		<Footer />
+	</body>
+</html>
