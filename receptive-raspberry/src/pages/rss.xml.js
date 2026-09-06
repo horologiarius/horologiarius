@@ -1,27 +1,34 @@
 import { getCollection } from 'astro:content';
-import rss from '@astrojs/rss';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 export async function GET(context) {
 	const posts = await getCollection('blog');
-	const feed = rss({
-		title: SITE_TITLE,
-		description: SITE_DESCRIPTION,
-		site: context.site,
-		items: posts.map((post) => ({
-			...post.data,
-			link: `/blog/${post.id}/`,
-		})),
-	});
 
-	const xml = await feed.text();
+	const items = posts
+		.map(
+			(post) => `
+		<item>
+			<title><![CDATA[${post.data.title}]]></title>
+			<link>${context.site}/blog/${post.id}/</link>
+			<guid>${context.site}/blog/${post.id}/</guid>
+			<description><![CDATA[${post.data.description}]]></description>
+			<pubDate>${post.data.pubDate.toUTCString()}</pubDate>
+		</item>`
+		)
+		.join('');
 
-	const styledXml = xml.replace(
-		'<?xml version="1.0" encoding="UTF-8"?>',
-		'<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/rss-styles.xsl"?>'
-	);
+	const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/rss-styles.xsl"?>
+<rss version="2.0">
+	<channel>
+		<title>${SITE_TITLE}</title>
+		<link>${context.site}</link>
+		<description>${SITE_DESCRIPTION}</description>
+		<language>en-us</language>${items}
+	</channel>
+</rss>`;
 
-	return new Response(styledXml, {
+	return new Response(xml, {
 		headers: { 'Content-Type': 'application/xml; charset=utf-8' },
 	});
 }
