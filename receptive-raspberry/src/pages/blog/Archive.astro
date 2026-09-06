@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../../consts';
+
+const allPosts = await getCollection('blog');
+
+const posts = allPosts
+	.filter((post) => post.id.startsWith('Archive'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Blog: Archive" description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 3em 1em;
+			}
+			h1 {
+				color: var(--color-text-heading);
+				font-size: 1.4em;
+				margin-bottom: 1.5em;
+			}
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li {
+				margin-bottom: 1em;
+			}
+			ul li a {
+				color: var(--color-text-heading);
+				text-decoration: none;
+				font-size: 16px;
+			}
+			ul li a:hover {
+				color: var(--color-accent-hover);
+			}
+			ul li .date {
+				color: var(--color-text-muted);
+				font-size: 13px;
+				margin-right: 1em;
+			}
+			.empty {
+				color: var(--color-text-muted);
+				font-size: 16px;
+				text-align: center;
+				padding: 2em;
+			}
+		</style>
+	</head>
+	<body style="background: url('https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh;">
+		<Header />
+		<main>
+			<h1>Blog: Archive</h1>
+			{
+				posts.length > 0 ? (
+					<ul>
+						{posts.map((post) => (
+							<li>
+								<span class="date">
+									<FormattedDate date={post.data.pubDate} />
+								</span>
+								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							</li>
+						))}
+					</ul>
+				) : (
+					<p class="empty">No archive entries yet.</p>
+				)
+			}
+		</main>
+		<Footer />
+	</body>
+</html>
