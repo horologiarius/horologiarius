@@ -90,6 +90,32 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				— <i>Saint Augustine of Hippo</i>
 			</footer>
             </blockquote>
+            <hr class="section-break" />
+		    <table class="recent-table">
+				<caption>Last Essays</caption>
+				<thead>
+					<tr>
+						<th>Created</th>
+						<th>Type</th>
+						<th>Status</th>
+						<th>Topics</th>
+					</tr>
+				</thead>
+				<tbody>
+					{recentPosts.map((post) => (
+						<tr>
+							<td>
+								<a href={`/blog/${post.id}/`}>
+									<FormattedDate date={post.data.pubDate} />
+								</a>
+							</td>
+							<td>{post.data.type ?? '—'}</td>
+							<td>{post.data.status ?? '—'}</td>
+							<td>{post.data.topics?.join(', ') ?? '—'}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
 			<img class="wormhole.gif" src="https://media1.tenor.com/m/ypwgjG2VB6UAAAAC/wormhole-black-and-white.gif" alt="Parallaxed wormhole" />
 		</main>
 		<Footer />
