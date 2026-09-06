@@ -1,5 +1,7 @@
 ---
-date: 2026-01-14
+title: "Apanhadores de sonhos nos jardins secretos"
+description: "Philosophical essay of Phrolova's lore."
+pubDate: 2026-01-14
 type: Essay
 status: draft
 topics:
