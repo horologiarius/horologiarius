@@ -1,0 +1,131 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../../consts';
+
+const allPosts = await getCollection('blog');
+
+const posts = allPosts
+	.filter((post) => post.id.startsWith('Readings'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const subcategories = [...new Set(
+	posts
+		.map((post) => post.id.split('/')[1])
+		.filter(Boolean)
+)];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Readings" description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 3em 1em;
+			}
+			h1 {
+				color: var(--color-text-heading);
+				font-size: 1.4em;
+				margin-bottom: 1em;
+			}
+			.subcats {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5em;
+				margin-bottom: 2em;
+			}
+			.subcats a {
+				background: var(--color-surface);
+				border: 1px solid var(--color-accent);
+				border-radius: 50px;
+				padding: 0.4em 1em;
+				color: var(--color-accent);
+				text-decoration: none;
+				font-size: 13px;
+				transition: all 0.2s ease;
+			}
+			.subcats a:hover {
+				background: var(--color-accent);
+				color: #0a0a0a;
+			}
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li {
+				margin-bottom: 1.5em;
+				padding-bottom: 1em;
+				border-bottom: 1px solid rgba(184, 169, 104, 0.15);
+			}
+			ul li a {
+				color: var(--color-text-heading);
+				text-decoration: none;
+				font-size: 16px;
+				font-weight: 700;
+			}
+			ul li a:hover {
+				color: var(--color-accent-hover);
+			}
+			ul li .date {
+				color: var(--color-text-muted);
+				font-size: 13px;
+				margin-bottom: 0.3em;
+			}
+			ul li .desc {
+				color: var(--color-text-primary);
+				font-size: 14px;
+				margin-top: 0.3em;
+			}
+			.empty {
+				color: var(--color-text-muted);
+				font-size: 16px;
+				text-align: center;
+				padding: 2em;
+			}
+		</style>
+	</head>
+	<body style="background: url('https://cdn.pixabay.com/photo/2020/07/12/13/23/hourglass-5397243_1280.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh;">
+		<Header />
+		<main>
+			<h1>Blog: Readings</h1>
+			{
+				subcategories.length > 0 && (
+					<div class="subcats">
+						{subcategories.map((cat) => (
+							<a href={`/blog/readings/${cat.toLowerCase()}`}>{cat}</a>
+						))}
+					</div>
+				)
+			}
+			{
+				posts.length > 0 ? (
+					<ul>
+						{posts.map((post) => (
+							<li>
+								<div class="date">
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+								{post.data.description && (
+									<p class="desc">{post.data.description}</p>
+								)}
+							</li>
+						))}
+					</ul>
+				) : (
+					<p class="empty">No reading notes yet.</p>
+				)
+			}
+		</main>
+		<Footer />
+	</body>
+</html>
