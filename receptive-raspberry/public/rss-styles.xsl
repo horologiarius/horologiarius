@@ -179,7 +179,7 @@ footer {
 	</xsl:for-each>
 </main>
 <footer>
-	<p>Horologiarius — The Watchmaker &#8982;</p>
+	<p><i>Horologiarius — The Watchmaker</i> &#8982;</p>
 </footer>
 </body>
 </html>
